@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Adicionar Avaliação</title>
+</head>
+<body>
+    <div class="container-add">
+        <div class="form-add">
+            <h1>Adicionar Avaliação</h1>
+            <form action="confirmarAdd/{{id}}" method="POST">
+                <p>Disciplina</p>
+                <input type="text" name="disciplina" id="disciplina" placeholder="Ex: Matématica" required = "required">
+                <p>Matéria</p>
+                <input type="text" name="materia" id="materia" placeholder="Ex: Funções" required = "required">
+                <p>Professor</p>
+                <input type="text" name="professor" id="professor" placeholder="Ex: Marcos" required = "required">
+                <p>Data</p>
+                <input type="date" name="data" id="data" required = "required">
+                <p>Observações</p>
+                <textarea name="observacao" id="observacoes" cols="30" rows="10" placeholder="Ex: Estudar livro página 120"></textarea><br>
+                <button type="submit">Confirmar</button>
+            </form>
+            
+        </div>
+    </div>
+
+    <script src="sweetalert2.all.min.js"></script>
+</body>
+</html>

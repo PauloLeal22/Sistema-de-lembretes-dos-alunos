@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Editar Avaliação</title>
+</head>
+<body>
+    <div class="container-add">
+        <div class="form-add">
+            <h1>Editar Avaliação</h1>
+            {{#each avaliacao}}
+                <form action="confirmarEdit/{{dataValues.user_id}}" method="POST">
+                    <input type="hidden" name="id_avaliacao" value="{{dataValues.id}}">
+                    <p>Disciplina</p>
+                    <input type="text" name="disciplina" id="disciplina" placeholder="{{dataValues.disciplina}}" required = "required">
+                    <p>Matéria</p>
+                    <input type="text" name="materia" id="materia" placeholder="{{dataValues.materia}}" required = "required">
+                    <p>Professor</p>
+                    <input type="text" name="professor" id="professor" placeholder="{{dataValues.professor}}" required = "required">
+                    <p>Data</p>
+                    <input type="date" name="data" id="data" required = "required">
+                    <p>Observações</p>
+                    <textarea name="observacao" id="observacoes" cols="30" rows="10" placeholder="{{dataValues.observacao}}"></textarea><br>
+                    <button type="submit">Confirmar</button>
+                </form>
+            {{/each}}
+            
+        </div>
+    </div>
+</body>
+</html>

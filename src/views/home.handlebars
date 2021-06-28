@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>SLA - Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <input type="hidden" id="id_user" value="{{id}}">
+        <header class="header-dashboard">
+            <div class="img-header-dashboard">
+                <img src="/images/logo04.png" alt="Logo">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="hamburguer-home"></div>
+        </header>
+
+        <div class="menu-lateral">
+            <div class="logo-menu" style="display: none;">
+                        
+            </div>
+            <ul class="list-menu-lateral">
+                <form action="{{id}}" method="POST">
+                    <a><li id="li-dashboard"><button type="submit"><div class="area-icons"><i class="fa fa-dashboard" style="font-size:24px"></i></div>Dashboard</button></li></a>
+                </form>
+
+                <form action="add/{{id}}" method="POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-plus-circle" style="font-size:24px"></i></div>Adicionar avaliação</button></li></a>
+                </form>
+                
+                <form action="avAtuais/{{id}}" method="POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-mortar-board" style="font-size:24px"></i></div>Avaliações atuais</button></li></a>
+                </form>
+
+                <form action="avConc/{{id}}" method="POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-check-circle-o" style="font-size:24px"></i></div>Concluídas</button></li></a>
+                </form>
+                
+                <form action="avExc/{{id}}" method="POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-trash" style="font-size:24px"></i></div>Removidas</button></li></a>
+                </form>
+
+                <form action = "sair/{{id}}" method = "POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-sign-out" style="font-size:24px"></i></div>Sair</button></li></a>
+                </form>
+            </ul>
+        </div>
+
+        <div class="area-dados">
+            <div class="area-welcome">
+                <h1>Bem vindo {{nome}}!</h1>
+            </div>
+            <div class="area-infos" id="area-infos">
+                <div class="side-area">
+                    <p>Total de avaliações: <span>{{totalAv}}</span></p>
+                    <p>Avaliações em andamento: <span>{{avAndamento}}</span></p>
+                    <p>Avaliações concluídas: <span>{{avConcluida}}</span></p>
+                    <p>Avaliações excluídas: <span>{{avExcluida}}</span></p>
+                </div>
+                <div class="side-area">
+                    <p>Maior nota: <span>{{maiorNota}}</span></p>
+                    <p>Menor nota: <span>{{menorNota}}</span></p>
+                    <p>Disciplina com maior nota: <span>{{avMaiorNota}}</span></p>
+                    <p>Disciplina com menor nota: <span>{{avMenorNota}}</span></p>
+                </div>
+                
+            </div>
+            <div class="area-cards" id="{{situacao}}">
+                <div class="card-dashboard">
+                    <canvas class="doughnut-chart" id="doughnut-chart"></canvas>
+                </div>
+
+
+                <div class="card-dashboard">
+                    <canvas class="polar-chart" id="polar-chart"></canvas>
+                </div>
+
+
+                <div class="card-dashboard">
+                    <canvas class="polar-chart" id="polar-chart02"></canvas>
+                </div>
+            </div>
+
+            <div class="area-table" id="area-table">
+                <h2>Avaliações Totais</h2>
+                <table class="table-avaliacoes">
+                    <thead>
+                        <tr>
+                            <th>Disciplina</th>
+                            <th>Matéria</th>
+                            <th id="th-data">Data</th>
+                            <th>Nota</th>
+                            <th id="th-sit">Situação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tableAvaliacoes}}
+                            <tr>
+                                <td>{{disciplina}}</td>
+                                <td>{{materia}}</td>
+                                <td id="td-data">{{data}}</td>
+                                <td>{{nota}}</td>
+                                <td class ="td-sit" value = "{{situacao}}">{{situacao}}</td>
+                            </tr>
+                        {{/each}}
+                        
+                    </tbody>
+                    
+                </table>
+            </div>
+
+            <div class="area-aviso" id="area-aviso">
+                <div class="img-aviso">
+                    <img src="/images/curioso.png" alt="aviso">
+                </div>
+                <div class="content-aviso">
+                    <h1>Parece que você não possui avaliações ou trabalhos em andamento!</h1>
+                    <h2>Que tal adicionarmos novas avaliações?</h2>
+                    <form action="add/{{id}}" method="POST">
+                        <button type="submit">Adicionar</button>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/showMenu.js"></script>
+    <script src="/verifAviso.js"></script>
+    <script src="/controlTable.js"></script>
+
+    <script>
+    // Gráfico 01
+    let ctxDoughnut = document.getElementById('doughnut-chart')
+    const dataDoughnut = {
+        labels: [
+            'Em andamento',
+            'Concluídas',
+            'Excluídas'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [
+                {{avAndamento}},
+                {{avConcluida}},
+                {{avExcluida}}
+            ],
+            backgroundColor: [
+            'rgba(1, 139, 252, 0.479)',
+            'rgba(101, 248, 64, 0.479)',
+            'rgba(241, 14, 14, 0.479)'
+            ],
+            hoverOffset: 4
+        }]
+    };
+
+    let chartDoughnut = new Chart(ctxDoughnut, {
+        type: 'doughnut',
+        data: dataDoughnut,
+        options: {
+            responsive: true,
+            plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Total de Avaliações',
+                font: {
+                size: 18
+                }
+            }
+            }
+        }
+    })
+
+    // Gráfico 02
+    let ctxPolar = document.getElementById('polar-chart')
+    const dataPolar = {
+        labels: [
+            `{{avMaioresNotas.[0]}}`,
+            `{{avMaioresNotas.[1]}}`,
+            `{{avMaioresNotas.[2]}}`
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [{{maioresNotas}}],
+            backgroundColor: [
+            'rgba(1, 139, 252, 0.479)',
+            'rgba(241, 14, 14, 0.479)',
+            'rgba(255, 187, 0, 0.479)'
+            ]
+            }]
+        }
+
+        let chartPolar = new Chart(ctxPolar, {
+        type: 'polarArea',
+        data: dataPolar,
+        options: {
+            responsive: true,
+            plugins: {
+            title: {
+                display: true,
+                text: 'Maiores Notas',
+                font: {
+                size: 18
+                }
+            }
+            }
+        }
+    })
+
+
+    // Gráfico 03
+    let ctxPolar2 = document.getElementById('polar-chart02')
+    const dataPolar2 = {
+        labels: [
+            `{{avMenoresNotas.[0]}}`,
+            `{{avMenoresNotas.[1]}}`,
+            `{{avMenoresNotas.[2]}}`
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [{{menoresNotas}}],
+            backgroundColor: [
+            'rgba(101, 248, 64, 0.479)',
+            'rgba(248, 64, 224, 0.479)',
+            'rgba(248, 153, 64, 0.479)'
+            ]
+            }]
+        }
+
+        let chartPolar2 = new Chart(ctxPolar2, {
+        type: 'polarArea',
+        data: dataPolar2,
+        options: {
+            responsive: true,
+            plugins: {
+            title: {
+                display: true,
+                text: 'Menores Notas',
+                font: {
+                size: 18
+                }
+            }
+            }
+        }
+    })
+    </script>
+</body>
+</html>

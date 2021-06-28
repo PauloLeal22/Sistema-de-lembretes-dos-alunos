@@ -1,0 +1,84 @@
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .container-help{
+    width: 100%;
+    min-height: 680px;
+    padding-top: 150px;
+    background-color: #F9F8FD;
+}
+
+.content-help{
+    width: 50%;
+    height: 330px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.container-help .content-help h1{
+    margin-bottom: 20px;
+}
+
+.content-help input{
+    width: 60%;
+    border: 1px solid #111;
+    background: transparent;
+    padding: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 16px;
+    color: #111;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+.content-help button{
+    width: 60%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #65f840;
+}
+
+.content-help button:hover{
+    background-color: #3bdb13;
+}
+
+@media (max-width: 700px){
+
+    .container-help{
+        padding-top: 100px;
+    }
+    
+    .content-help{
+        width: 90%;
+        height: 400px;
+    }
+    
+    .content-help input, .content-help button{
+        width: 80%;
+    }
+}
+</style>
+
+<div class="container-help">
+    <div class="content-help">
+        <h1>Central de ajuda do SLA</h1>
+        <h2>Sua senha foi alterada com sucesso!</h2>
+        <a href="../login"><button>Fazer Login</button></a><br><br><br>
+        <i class="fa fa-check-circle-o" style="font-size:68px; color: green"></i>
+    </div>
+</div>

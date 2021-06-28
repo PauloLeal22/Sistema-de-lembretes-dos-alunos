@@ -1,0 +1,38 @@
+<div class="container-cad">
+    <div class="area-cad">
+        <div class="content-cad">
+            <p id="erro">{{erro}}</p>
+            <h1>Cadastre-se</h1>
+            <form id="form" action="confirmarCadastro" method="POST">
+                <div class="inputBox">
+                    <input type="text" name="nome" required = "required">
+                    <span>Nome</span>
+                </div>
+                <div class="inputBox">
+                    <input type="email" name="email" required = "required">
+                    <span>Email</span>
+                </div>
+                <div class="inputBox">
+                    <input type="password" id="txtSenha" name="senha" required = "required">
+                    <span>Senha</span>
+                </div>
+                <div class="inputBox">
+                    <input type="password" name="Rsenha" id="txtSenha2" required = "required">
+                    <span>Senha novamente</span>
+                </div>
+                <div class="inputBoxButton">
+                    <button type="submit" id="btnCadastrar">Cadastrar</button>
+                </div>
+            </form>
+            <hr>
+            <p>Já possui conta?</p>
+            <a href="login"><button type="submit" id="btn-cadastrar">Login</button></a>
+        </div>
+    </div>
+    <div class="area-bg">
+        <div class="area-logo">
+            <img src="images/logo02.png" alt="logo">
+            <h1>Sistema de Lembrete dos Alunos</h1>
+        </div>
+    </div>
+</div>

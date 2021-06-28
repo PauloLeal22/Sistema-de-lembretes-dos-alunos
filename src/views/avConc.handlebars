@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>SLA - Avaliações</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header-dashboard">
+            <div class="img-header-dashboard">
+                <img src="/images/logo04.png" alt="Logo">
+                <h1>Concluídas</h1>
+            </div>
+            <div class="hamburguer-home"></div>
+        </header>
+
+        <div class="menu-lateral">
+            <div class="logo-menu" style="display: none;">
+                        
+            </div>
+            <ul class="list-menu-lateral">
+                <form action="../../dashboard/{{id}}" method="post">
+                    <a><li id="li-dashboard"><button type="submit"><div class="area-icons"><i class="fa fa-dashboard" style="font-size:24px"></i></div>Dashboard</li></button></a>
+                </form>  
+
+                <form action="../add/{{id}}" method="POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-plus-circle" style="font-size:24px"></i></div>Adicionar avaliação</button></li></a>
+                </form>
+
+                <form action="../avAtuais/{{id}}" method="POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-mortar-board" style="font-size:24px"></i></div>Avaliações atuais</li></button></a>
+                </form>
+
+                <form action="{{id}}" method="POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-check-circle-o" style="font-size:24px"></i></div>Concluídas</button></li></a>
+                </form>
+
+                <form action="../avExc/{{id}}" method="POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-trash" style="font-size:24px"></i></div>Removidas</button></li></a>
+                </form>
+
+                <form action = "../sair/{{id}}" method = "POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-sign-out" style="font-size:24px"></i></div>Sair</button></li></a>
+                </form>
+            </ul>
+        </div>
+
+        <div class="area-avaliacoes">
+            {{#each avaliacoes}}
+                <div class="card-avaliacao">
+                    <div class="title-card-avaliacao">
+                        <h2>{{dataValues.disciplina}}</h2>
+                    </div>
+                    <div class="content-card-avaliacao">
+                        <p><span>Matéria: </span>{{dataValues.materia}}</p> 
+                        <p><span>Prof: </span>{{dataValues.professor}}</p>
+                        <p><span>Data: </span>{{dataValues.data}}</p>
+                        <p><span>Nota: </span>{{dataValues.nota}}</p>
+                        <p><span>Obs: </span>{{dataValues.observacao}}</p>
+                    </div>
+                    <div class="buttons-card-avaliacao-con">
+                        <form action="../avConc/remake/{{dataValues.id}}" method="POST">
+                            <button id="btn-avaliacao-concluir" type="submit"><i class="fa fa-reply" style="font-size:24px"></i> Adc as Atuais</button>
+                        </form>
+
+                        <form action="../avConc/delete/{{dataValues.id}}" method="POST">
+                            <button id="btn-avaliacao-excluir" type="submit"><i class="fa fa-trash" style="font-size:24px"></i> Excluir</button>
+                        </form>
+                    </div>
+                </div>
+            {{/each}}
+
+            <div class="area-aviso" id="area-aviso">
+                <div class="img-aviso">
+                    <img src="/images/curioso.png" alt="aviso">
+                </div>
+                <div class="content-aviso">
+                    <h1>Parece que você não possui avaliações ou trabalhos concluídos!</h1>
+                    <h2>Para que eles estejam concluídos basta clicar em "Concluir" na página "Avaliações Atuais"!</h2>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    <script src="/showMenu.js"></script>
+    <script src="/verifAvisoConc.js"></script>
+</body>
+</html>

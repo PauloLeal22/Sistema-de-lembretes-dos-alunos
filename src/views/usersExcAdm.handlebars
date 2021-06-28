@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>SLA</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header-dashboard">
+            <div class="img-header-dashboard">
+                <img src="/images/logo04.png" alt="Logo">
+                <h1>Inativos</h1>
+            </div>
+            <div class="hamburguer-home"></div>
+        </header>
+
+        <div class="menu-lateral">
+            <div class="logo-menu" style="display: none;">
+                        
+            </div>
+            <ul class="list-menu-lateral">
+                <form action="../../dashboardAdm/{{id}}" method="post">
+                    <a><li id="li-dashboard"><button type="submit"><div class="area-icons"><i class="fa fa-dashboard" style="font-size:24px"></i></div>Dashboard</li></button></a>
+                </form>  
+
+                <form action="{{id}}" method="POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-trash" style="font-size:24px"></i></div>Removidas</button></li></a>
+                </form>
+
+                <form action="../messages/{{id}}" method="POST">
+                    <li><button type="submit"><div class="area-icons"><i class="fa fa-envelope" style="font-size:24px"></i></div>Mensagens</button></li>
+                </form>
+                
+                <form action = "../sair/{{id}}" method = "POST">
+                    <a><li><button type="submit"><div class="area-icons"><i class="fa fa-sign-out" style="font-size:24px"></i></div>Sair</button></li></a>
+                </form>
+            </ul>
+        </div>
+
+        <div class="area-users">
+            {{#each inativos}}
+                <div class="card-user">
+                    <div class="title-card-user">
+                        <h2>{{dataValues.nome}}</h2>
+                    </div>
+                    <div class="content-card-user">
+                        <p><span>Email: </span>{{dataValues.email}}</p>
+                        <p><span>Avaliações cadastradas: </span>{{dataValues.avscad}}</p> 
+                    </div>
+                    <div class="buttons-card-user">
+                        <form action="../usersExc/remake/{{dataValues.id}}" method="POST">
+                            <button id="btn-avaliacao-concluir" type="submit"><i class="fa fa-reply" style="font-size:24px"></i> Ativar</button>
+                        </form>
+                    </div>
+                </div>
+            {{/each}}
+
+            <div class="area-aviso" id="area-aviso">
+                <div class="img-aviso">
+                    <img src="/images/curioso.png" alt="aviso">
+                </div>
+                <div class="content-aviso">
+                    <h1>Parece que você não possui usuários inativos!</h1>
+                    <h2>Para que eles estejam inativos basta clicar em "Excluir" na página principal!</h2>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    <script src="/showMenu.js"></script>
+    <script src="/verifAvisoUser.js"></script>
+</body>
+</html>
