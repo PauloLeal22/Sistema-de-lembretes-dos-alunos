@@ -36,7 +36,7 @@ npm i jsonwebtoken
 <h2>Importar o Chart.js</h2>
 npm i chart.js
 
-<h2>Importar o Nodemailer<h2>
+<h2>Importar o Nodemailer</h2>
 npm i nodemailer
 
 <h1>Comandos para criar o banco de dados pelo sequelize</h1>
