@@ -20,6 +20,10 @@ Comandos necessários para iniciar o projeto:
 
 10) Importar o jsonwebtoken -> npm i jsonwebtoken
 
+11) Importar o Chart.js -> npm i chart.js
+
+12) Importar o Nodemailer -> npm i nodemailer
+
 ---------------------------------------------------------
 
 Comandos para criar o banco de dados pelo sequelize
