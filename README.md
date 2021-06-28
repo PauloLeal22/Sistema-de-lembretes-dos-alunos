@@ -3,7 +3,8 @@ Site desenvolvido com Node.js para os estudantes executarem tarefas como adicion
 
 <h1>Antes de excutar o projeto, realize as etapas abaixo.</h1>
 
-<ul>
-  Criar o package.json
-  <li>npm init -y</li>
-</ul>
+<h2>Criar o package.json</h2>
+npm init -y
+
+<h2>Importar o express</h2>
+npm i express
