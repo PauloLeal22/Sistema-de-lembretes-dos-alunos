@@ -137,14 +137,14 @@ module.exports = {
             port: 465, 
             secure: true, 
             auth: {
-                user: "slasuporte24h@gmail.com", 
-                pass: "ph27092002" 
+                user: "", 
+                pass: "" 
             }
         })
         
         // Config do email
         transporter.sendMail({
-            from: "Suporte SLA <slasuporte24h@gmail.com>", 
+            from: "Suporte SLA <>", 
             to: user_email, 
             subject: "Alteração de senha do SLA", 
             text: "Não responda esse email.", 
