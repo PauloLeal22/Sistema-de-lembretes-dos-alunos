@@ -6,7 +6,8 @@ const bcrypt = require('bcryptjs')
 module.exports = {
     async login(req, res){
         const {email, senha} = req.body
-
+        
+        // Verificando se o usuário é um administrador
         const user = await User.findOne({
             where: {
                 email,
@@ -48,25 +49,24 @@ module.exports = {
 
         const users = await User.findAll({where: {isadm: 0}})
 
+        // Select nos usuários ativos, inativos e online
         const ativos = users.filter(user => user.status == 1)
-
         const inativos = users.filter(user => user.status == 0)
-
         const online = users.filter(user => user.status == 1 && user.islogged == 1)
 
         const avaliacoes = await Avaliacao.findAll()
 
+        // Select nas avaliaçõs em andamento, concluídas e excluídas
         const avAndamento = (await avaliacoes).filter(av => av.status == 1 && av.iscompleted == 0)
-
         const avConcluida = (await avaliacoes).filter(av => av.status == 1 && av.iscompleted == 1)
-
         const avExcluida = (await avaliacoes).filter(av => av.status == 0)
 
         const posts = await Post.findAll({where: {isread: false}})
 
         let aviso = ""
         let imgAviso = ""
-
+    
+        // Verificando se há alguma mensagem dos usuários para o administrador
         if(posts.length > 0){
             aviso = "Há novas mensagens não lidas"
             imgAviso = "/images/alerta.png"
@@ -86,6 +86,7 @@ module.exports = {
             }
         })
 
+        // Manipulando os dados para a criação da tabela de usuários
         const tableUsers = users => {
             let usuarios = []
             let situacao = ""
@@ -135,6 +136,7 @@ module.exports = {
         try {
             const usuarios = await User.findAll({where: {id: id_user}})
 
+            // Modificando o status do usuario para "false"
             if(usuarios){
                 await User.update({
                     status: 0
@@ -160,6 +162,7 @@ module.exports = {
     async showUsersInativos(req, res){
         const user_id = req.params.id
 
+        // Select nos usuários que possuem o status "false"
         const inativos = await User.findAll({
             where: {
                 status: 0
@@ -169,6 +172,7 @@ module.exports = {
         return res.render('usersExcAdm', {id: user_id, inativos: inativos})
     },
 
+    // Função que retorna o usuário para a lista dos ativos
     async remakeUser(req, res){
         const id = req.params.id
 
@@ -197,6 +201,7 @@ module.exports = {
         }
     },
 
+    // Função que retorna todas as mensagens dos usuários para o adm
     async messages(req, res){
         try {
             const posts = await Post.findAll()
@@ -208,6 +213,7 @@ module.exports = {
         }
     },
 
+    // Função que marca as mensagens dos usuários como lida
     async readOn(req, res){
         try {
             const id = req.params.id
